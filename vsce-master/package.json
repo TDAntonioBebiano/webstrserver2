@@ -1,0 +1,109 @@
+{
+  "name": "webstrates-editor",
+  "displayName": "Webstrates Editor",
+  "description": "An editor extension that connects to Webstrates server to edit webstrates within Visual Studio Code.",
+  "icon": "images/webstrates-logo.png",
+  "version": "0.10.0",
+  "author": {
+    "name": "Roman Rädle",
+    "email": "contact@romanraedle.com",
+    "url": "https://romanraedle.com"
+  },
+  "publisher": "raedle",
+  "license": "Apache-2.0",
+  "homepage": "https://github.com/Webstrates/vsce/blob/master/README.md",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Webstrates/vsce.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Webstrates/vsce/issues",
+    "email": "roman.raedle@gmail.com"
+  },
+  "engines": {
+    "vscode": "^1.14.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "workspaceContains:.webstrates/config.json",
+    "onCommand:webstrates.initWorkspace"
+  ],
+  "main": "./out/src/extension",
+  "contributes": {
+    "commands": [
+      {
+        "command": "webstrates.initWorkspace",
+        "title": "Init Webstrates Workspace"
+      },
+      {
+        "command": "webstrates.toggleWid",
+        "title": "Webstrate Toggle __wid"
+      },
+      {
+        "command": "webstrates.webstratePreview",
+        "title": "Webstrate Preview"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "webstrates.webstratePreview",
+        "key": "ctrl+alt+p",
+        "mac": "cmd+alt+p"
+      }
+    ],
+    "languages": [
+      {
+        "id": "html",
+        "firstLine": ".*<html.*"
+      },
+      {
+        "id": "JavaScript",
+        "extensions": [
+          "#js"
+        ]
+      },
+      {
+        "id": "css",
+        "extensions": [
+          "#css"
+        ]
+      }
+    ],
+    "snippets": [
+      {
+        "language": "html",
+        "path": "./snippets/html.json"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "tsc -p ./",
+    "compile": "tsc -watch -p ./",
+    "postinstall": "node ./node_modules/vscode/bin/install",
+    "test": "node ./node_modules/vscode/bin/test",
+    "preversion": "npm test",
+    "version": "git add -A",
+    "postversion": "git push && git push --tags && vsce publish $npm_package_version"
+  },
+  "dependencies": {
+    "cheerio": "^0.20.0",
+    "chokidar": "^1.6.0",
+    "elegant-spinner": "^1.0.1",
+    "event-emitter": "^0.3.4",
+    "json-comments": "^0.2.1",
+    "moment": "^2.15.1",
+    "optimist": "^0.6.1",
+    "websocket": "^1.0.23",
+    "webstrates": "^0.2.8"
+  },
+  "devDependencies": {
+    "@types/mocha": "^2.2.32",
+    "@types/node": "^6.0.40",
+    "eslint": "^4.2.0",
+    "mocha": "^2.3.3",
+    "typescript": "^2.0.3",
+    "vscode": "^1.0.0"
+  }
+}

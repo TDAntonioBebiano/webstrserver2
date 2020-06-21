@@ -1,0 +1,50 @@
+<html>
+<head>
+        <style id="style-main">
+                .note {
+                    position: absolute;
+                    left: 8px;
+                    top: 8px;
+                    width: 400px;
+                    min-height: 400px;
+                    padding: 16px;
+                    box-shadow: 5px 5px 10px gray;
+                    background-color: rgb(255, 255, 150);
+                    font-size: 24pt;
+                    word-wrap: break-word;
+                }
+                .note:focus {
+                    outline: none;
+                    box-shadow: 15px 15px 20px gray;
+                }
+            </style>
+</head>
+<body>
+
+        <div class="note" contenteditable="true"></div>
+
+        <script id="script-main">
+                var edited = null; //The note currently edited
+                
+                //Add event listerner for the webstrate being loaded
+                webstrate.on("loaded", function() {
+                    //If the user double-clicks a note then make it editable and give it focus.
+                    document.addEventListener("dblclick", function(e) {
+                        var note = e.target.closest(".note");
+                        if (note) {
+                            edited = note;
+                            note.setAttribute("contenteditable", true);
+                            note.focus();
+                        }
+                    });
+                
+                    //If the user clicks anywhere else than on the edited note disable editing.
+                    document.addEventListener("click", function(e) {
+                        if (!edited || e.target.closest(".note") === edited) return;
+                            edited.setAttribute("contenteditable", false);
+                            edited = null;
+                    });
+                });
+                </script>
+</body>
+</html>
