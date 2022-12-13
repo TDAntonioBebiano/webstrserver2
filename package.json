@@ -41,7 +41,7 @@
     "crypto": "^1.0.1",
     "csvtojson": "^1.1.9",
     "diff-match-patch": "^1.0.4",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "express-ws": "^4.0.0",
     "fs-sync": "^1.0.6",
     "graceful-fs": "^4.1.15",
